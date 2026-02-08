@@ -225,6 +225,46 @@
             display: block;
         }
 
+        /* --- PORTFOLIO SECTION (NEU) --- */
+        .portfolio-section {
+            padding: 6rem 0;
+            background: var(--bg-dark);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            /* Schatten für Tiefe */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
         /* --- AI ADVANTAGE SECTION --- */
         .ai-advantage {
             background: var(--bg-panel);
@@ -285,7 +325,8 @@
 
         /* BEGRENZUNG DES NACHRICHTENFELDS */
         textarea {
-            resize: vertical; /* Erlaubt nur vertikales Ziehen */
+            resize: vertical; /* Erlaubt nur vertikales Ziehen, kein horizontales */
+            max-width: 100%; /* Verhindert das Ausbrechen aus dem Container */
         }
 
         select option { background-color: var(--bg-panel); }
@@ -510,6 +551,31 @@
         </div>
     </section>
 
+    <!-- NEU: PORTFOLIO SECTION -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <span>Referenzen</span>
+                <h2>Unsere letzten Projekte</h2>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Projekt 1 -->
+                <div class="portfolio-item">
+                    <img src="Reference 01.jpg" alt="Burger Menu Design" class="portfolio-img">
+                </div>
+                <!-- Projekt 2 -->
+                <div class="portfolio-item">
+                    <img src="Reference 02.jpg" alt="Coffee Menu Design" class="portfolio-img">
+                </div>
+                <!-- Projekt 3 -->
+                <div class="portfolio-item">
+                    <img src="Reference 04.jpg" alt="Drink Menu Design" class="portfolio-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="ai-advantage">
         <div class="container advantage-grid">
             <div class="advantage-text">
@@ -674,7 +740,7 @@
             }
         }
 
-        // --- NEU: FUNKTION FÜR KARTEN-KLICK ---
+        // --- FUNKTION FÜR KARTEN-KLICK ---
         function selectPackage(paketName) {
             // 1. Dropdown auswählen
             const selectElement = document.querySelector('select[name="paket"]');
