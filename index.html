@@ -1,761 +1,650 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Design Studios | Full Service Gastro</title>
-    
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0b0b'/%3E%3Ctext x='50' y='70' text-anchor='middle' font-family='serif' font-weight='bold' font-size='60' fill='%23D4AF37'%3Eai%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-
+    <title>aidesignstudios</title>
+    <link rel="icon" href="mein-icon.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #0b0b0b;
-            --bg-panel: #141414;
-            --gold-accent: #D4AF37;
-            --gold-glow: rgba(212, 175, 55, 0.25);
-            --gold-glow-strong: rgba(212, 175, 55, 0.4);
-            --text-main: #F0F0F0;
-            --text-muted: #A0A0A0;
-            --container-width: 1200px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        /* NEU: Smooth Scrolling für die ganze Seite */
+        /* Custom Styles for the Premium Light Redesign */
         html {
             scroll-behavior: smooth;
         }
-
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #374151; /* Gray-700 */
         }
 
-        /* --- TYPOGRAFIE --- */
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: #fff;
-            line-height: 1.2;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #111827; /* Gray-900 */
         }
-
-        .gold-text { color: var(--gold-accent); font-style: italic; }
-
-        .btn-gold {
-            background: linear-gradient(45deg, #c79d2b, #e6b845);
-            color: #000;
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            display: inline-block;
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #E5E7EB; /* Gray-200 */
         }
-
-        .btn-gold:hover {
+        .hero-bg {
+            background-color: #F9FAFB; /* Gray-50 */
+            background-image: radial-gradient(#E5E7EB 1px, transparent 1px);
+            background-size: 2rem 2rem;
+        }
+        .cta-button {
+            background: linear-gradient(white, white) padding-box, linear-gradient(to right, #F97316, #FBBF24) border-box;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .cta-button .text-gradient {
+            background: linear-gradient(to right, #F97316, #FBBF24);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: color 0.3s ease;
+        }
+        .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px var(--gold-glow);
+            box-shadow: 0 8px 25px rgba(234, 88, 12, 0.3);
         }
-
-        .container {
-            width: 90%;
-            max-width: var(--container-width);
-            margin: 0 auto;
+        .cta-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
-
-        /* --- NAVIGATION --- */
-        nav {
-            padding: 2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* LOGO STYLE */
-        .logo-svg {
-            height: 40px; /* Logo Größe */
-            width: auto;
-            display: block;
-            transition: opacity 0.3s;
-        }
-        
-        .logo-svg:hover { opacity: 0.9; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: radial-gradient(circle at 75% 50%, rgba(20, 20, 20, 1), var(--bg-dark) 60%);
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(3rem, 5vw, 5rem);
-            margin-bottom: 1rem;
-        }
-
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 450px;
-            border-left: 2px solid var(--gold-accent);
-            padding-left: 1rem;
-        }
-
-        .hero-image-wrapper img {
-            width: 100%;
-            max-width: 550px;
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6)); 
-            animation: float 6s ease-in-out infinite;
-            border-radius: 20px;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* --- PACKAGES SECTION --- */
-        .menu-section {
-            padding: 6rem 0;
-            background: linear-gradient(to top, #000, var(--bg-dark));
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .section-header span { color: var(--gold-accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .menu-card {
-            background: var(--bg-panel);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .add-to-cart-button {
+            background: linear-gradient(white, white) padding-box, linear-gradient(to right, #F97316, #FBBF24) border-box;
+            color: #4B5563; /* Gray-600 */
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 3rem 2rem;
-            text-align: center;
-            align-items: center;
-            position: relative;
+        }
+        .add-to-cart-button:hover {
+            background: #FFF7ED; /* Light Orange Tint */
+            transform: translateY(-2px);
         }
 
-        .menu-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--gold-accent);
-            background: #1a1a1a;
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15);
-        }
-
-        .icon-wrapper {
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-card:hover .icon-wrapper {
-            transform: scale(1.15) rotate(5deg);
-            filter: drop-shadow(0 0 15px var(--gold-glow));
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            stroke: var(--gold-accent);
-            stroke-width: 1.5;
-            fill: none;
-        }
-
-        .card-content { 
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        
-        .card-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .card-content p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
-        
-        .card-price { 
-            display: block; 
-            color: var(--gold-accent); 
-            font-weight: 700; 
-            font-family: 'Playfair Display'; 
-            font-size: 1.3rem;
-            margin-top: auto; 
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            width: 100%;
-            line-height: 1.4;
-        }
-        
-        .card-price .small-text {
-            font-size: 0.8rem;
-            font-family: 'Manrope', sans-serif;
-            color: var(--text-muted);
-            font-weight: 400;
-            display: block;
-        }
-
-        /* --- PORTFOLIO SECTION (NEU) --- */
-        .portfolio-section {
-            padding: 6rem 0;
-            background: var(--bg-dark);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            /* Schatten für Tiefe */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .portfolio-item:hover {
-            transform: scale(1.02);
-            z-index: 10;
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
-        }
-
-        .portfolio-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .portfolio-item:hover .portfolio-img {
+        /* Styles for the new comparison table */
+        .pricing-table-highlight {
+            border: 2px solid #F97316;
             transform: scale(1.05);
         }
-
-        /* --- AI ADVANTAGE SECTION --- */
-        .ai-advantage {
-            background: var(--bg-panel);
-            padding: 4rem 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            margin-top: 2rem;
-            position: relative;
+        .popular-badge {
+            background: linear-gradient(to right, #F97316, #FBBF24);
+        }
+        
+        /* Styles for the new toggle switch */
+        .plan-toggle button.active {
+            background-color: #FFFFFF;
+            color: #F97316;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+        .plan-view { display: none; }
+        .plan-view.active { display: block; }
+        
+        .individual-item:hover {
+            background-color: #F9FAFB; /* Gray-50 */
+            border-color: #FDBA74; /* Orange-300 */
         }
 
-        .advantage-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .advantage-text h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-        .advantage-text p { color: var(--text-muted); font-size: 1rem; }
-
-        .price-highlight {
-            border: 1px solid var(--gold-accent);
-            border-radius: 20px;
-            padding: 1.5rem;
-            text-align: center;
-            background: rgba(212, 175, 55, 0.05);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
-        }
-
-        /* --- CONTACT FORM --- */
-        .contact {
-            padding: 5rem 0;
-            text-align: center;
-            background: linear-gradient(to bottom, var(--bg-dark), #000); 
-        }
-
-        .form-box {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--bg-panel);
-            padding: 2.5rem;
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        input, textarea, select {
-            width: 100%;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 0.8rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            font-family: inherit;
-            transition: 0.3s;
-            border-radius: 8px;
-        }
-
-        /* BEGRENZUNG DES NACHRICHTENFELDS */
+        /* Begrenzung des Nachrichtenfelds */
         textarea {
-            resize: vertical; /* Erlaubt nur vertikales Ziehen, kein horizontales */
-            max-width: 100%; /* Verhindert das Ausbrechen aus dem Container */
+            resize: vertical;
+            max-width: 100%;
         }
 
-        select option { background-color: var(--bg-panel); }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--gold-accent);
-            background: rgba(255,255,255,0.05);
+        /* Custom scroll-padding for anchor links */
+        :target {
+             scroll-margin-top: 100px;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: #050505;
-            padding: 5rem 0 2rem 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-align: left;
+        /* Animation for elements on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            align-items: start;
-        }
-
-        .footer-col {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .footer-col h4 {
-            color: #fff;
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-links a {
-            display: block;
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-bottom: 0.8rem;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover { color: var(--gold-accent); }
-
-        .footer-ceo-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold-accent);
-            margin-bottom: 1rem;
-            transition: transform 0.3s;
-        }
-        
-        .footer-ceo-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.8rem;
-            opacity: 0.6;
-        }
-
-        @media (max-width: 900px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .hero-text p { margin: 0 auto 2rem auto; border-left: none; padding-left: 0; }
-            .advantage-grid { grid-template-columns: 1fr; text-align: center; }
-            .footer-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-            .footer-col { align-items: center; }
-        }
-
-        /* --- MODAL / POPUP STYLES --- */
-        .modal {
-            display: none; 
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            animation: fadeIn 0.3s;
-        }
-
-        .modal-content {
-            background-color: #1a1a1a;
-            margin: 5% auto;
-            padding: 3rem;
-            border: 1px solid var(--gold-accent);
-            width: 90%;
-            max-width: 800px;
-            border-radius: 10px;
+        /* --- New Elegant Navigation Styles --- */
+        .main-nav a {
             position: relative;
-            color: #fff;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            padding: 8px 4px;
+            color: #4B5563;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+        .main-nav a:hover {
+            color: #F97316;
         }
-
-        .close-btn:hover { color: var(--gold-accent); }
-
-        .modal-body h2 { margin-bottom: 1.5rem; color: var(--gold-accent); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
-        .modal-body h3 { font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 600; }
-        .modal-body p { margin-bottom: 0.8rem; color: #ccc; font-size: 0.95rem; line-height: 1.6; }
-        .modal-body ul { color: #ccc; margin-bottom: 1rem; padding-left: 1.5rem; }
-        .modal-body li { margin-bottom: 0.5rem; }
-
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #F97316, #FBBF24);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            bottom: 0;
+            transform-origin: left;
+        }
+        .main-nav a:hover::after {
+            transform: scaleX(1);
         }
     </style>
 </head>
-<body>
-
-    <nav class="container">
-        <a href="#" class="logo">
-            <svg class="logo-svg" viewBox="0 0 320 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="30" font-family="'Playfair Display', serif" font-weight="600" font-size="30" letter-spacing="1" style="filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));">
-                    <tspan fill="#D4AF37">ai</tspan><tspan fill="white">designstudios</tspan>
-                </text>
-            </svg>
-        </a>
-        <a href="#contact" style="color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; border-bottom: 1px solid var(--gold-accent);">Kontakt</a>
-    </nav>
-
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <span style="color: var(--gold-accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; display:block; margin-bottom: 1rem;">Full Service Gastronomie</span>
-                <h1>Mit Liebe zum <br><span class="gold-text">Detail.</span></h1>
-                <p>Digitaler Erfolg für dein Restaurant.<br> Von der Speisekarte bis zum Social Media Hosting.<br> Du kochst, wir kümmern uns um den Rest.</p>
-                <a href="#pakete" class="btn-gold">Lösungen ansehen</a>
-            </div>
-            <div class="hero-image-wrapper">
-                <img src="hero_image.jpg" alt="Gourmet Chef Plating">
-            </div>
+<body class="antialiased">
+    
+    <!-- Header -->
+    <header id="header" class="glass-header sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+             <a href="#">
+                <img src="ai.svg" alt="aidesignstudios Logo" class="h-8 w-auto">
+            </a>
+            <nav class="hidden md:flex items-center md:space-x-6 lg:space-x-8 main-nav">
+                <a href="#about">Mission</a>
+                <a href="#process">Ablauf</a>
+                <a href="#packages">Angebot</a>
+                <a href="#contact">Kontakt</a>
+            </nav>
+            <a href="#contact" class="hidden md:block cta-button font-semibold py-2 px-6 rounded-full flex-shrink-0"><span class="text-gradient">Jetzt starten</span></a>
+            <button id="mobile-nav-toggle" class="md:hidden text-gray-900 z-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h16"></path></svg>
+            </button>
         </div>
-    </section>
-
-    <section id="pakete" class="menu-section">
-        <div class="container">
-            <div class="section-header">
-                <span>Angebot</span>
-                <h2>Alles aus einer Hand</h2>
-            </div>
-            
-            <div class="card-grid">
-                <div class="menu-card" onclick="selectPackage('Hybrid Menu')">
-                    <div class="icon-wrapper">
-                        <svg class="card-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="card-content">
-                        <h3>Hybrid Menu</h3>
-                        <p>Hochwertige Speisekarten plus interaktive <strong>Smartphone-Version</strong> per QR-Code.</p>
-                        <span class="card-price">
-                            290.- 
-                            <span class="small-text">Pauschal (Einmalig)</span>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="menu-card" onclick="selectPackage('Social Hosting')">
-                    <div class="icon-wrapper">
-                        <svg class="card-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </div>
-                    <div class="card-content">
-                        <h3>Social Media Hosting</h3>
-                        <p>Deine Accounts auf Autopilot. Wir erstellen Content, posten und interagieren für dich.</p>
-                        <span class="card-price">
-                            Setup: 250.-
-                            <span class="small-text">+ 150.- / Monat</span>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="menu-card" onclick="selectPackage('Branding')">
-                    <div class="icon-wrapper">
-                        <svg class="card-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </div>
-                    <div class="card-content">
-                        <h3>Branding</h3>
-                        <p>Einzigartiges Logo, Farbkonzept und visuelle Identität für dein Lokal.</p>
-                        <span class="card-price">
-                            490.- 
-                            <span class="small-text">Starter Paket (Pauschal)</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-nav" class="md:hidden fixed inset-0 bg-white/95 backdrop-blur-sm flex-col items-center justify-center space-y-8 text-2xl hidden">
+            <a href="#about" class="mobile-nav-link text-gray-900">Mission</a>
+            <a href="#process" class="mobile-nav-link text-gray-900">Ablauf</a>
+            <a href="#packages" class="mobile-nav-link text-gray-900">Angebot</a>
+            <a href="#contact" class="mobile-nav-link text-gray-900">Kontakt</a>
         </div>
-    </section>
+    </header>
 
-    <!-- NEU: PORTFOLIO SECTION -->
-    <section id="portfolio" class="portfolio-section">
-        <div class="container">
-            <div class="section-header">
-                <span>Referenzen</span>
-                <h2>Unsere letzten Projekte</h2>
-            </div>
-            
-            <div class="portfolio-grid">
-                <!-- Projekt 1 -->
-                <div class="portfolio-item">
-                    <img src="Reference 01.jpg" alt="Burger Menu Design" class="portfolio-img">
-                </div>
-                <!-- Projekt 2 -->
-                <div class="portfolio-item">
-                    <img src="Reference 02.jpg" alt="Coffee Menu Design" class="portfolio-img">
-                </div>
-                <!-- Projekt 3 -->
-                <div class="portfolio-item">
-                    <img src="Reference 04.jpg" alt="Drink Menu Design" class="portfolio-img">
+    <main>
+        <!-- Hero Section -->
+        <section class="relative py-24 md:py-48 text-center overflow-hidden hero-bg">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="animate-on-scroll">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tighter">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">Exzellentes Design.</span>
+                        <br><span class="text-4xl md:text-6xl lg:text-7xl text-gray-800">Intelligent geliefert.</span>
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto text-gray-600">
+                        Wir transformieren Ihre Vision in professionelle Designs.<br class="hidden md:block"> Erhalten Sie eine Vielzahl von Entwürfen in weniger als 48 Stunden.
+                    </p>
+                    <a href="#packages" class="cta-button inline-block font-bold text-lg mt-10 py-4 px-12 rounded-full">
+                        <span class="text-gradient">Angebote ansehen</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="ai-advantage">
-        <div class="container advantage-grid">
-            <div class="advantage-text">
-                <h3>Der AI-Vorteil: Effizienz pur.</h3>
-                <p>Dank modernster <strong>Künstlicher Intelligenz</strong> automatisieren wir Designprozesse. Du erhältst High-End Qualität schneller und günstiger als bei klassischen Agenturen.</p>
-            </div>
-            <div class="price-highlight">
-                <span style="display:block; font-size: 3rem; color: #fff; font-family: 'Playfair Display'; line-height: 1;">-50%</span>
-                <span style="color: var(--gold-accent); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;">Günstiger als klassische Agenturen</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Lass uns sprechen.</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Deine Vision, unser Design.</p>
-            
-            <div class="form-box">
-                <form action="https://formsubmit.co/laestheticcreations@gmail.com" method="POST">
-                    <input type="text" name="name" placeholder="Dein Name" required>
-                    <input type="text" name="restaurant" placeholder="Restaurant Name" required>
-                    <input type="email" name="email" placeholder="E-Mail Adresse" required>
-                    
-                    <select name="paket">
-                        <option value="" disabled selected>Worum geht es?</option>
-                        <option value="Hybrid Menu">Hybrid Menu</option>
-                        <option value="Social Hosting">Social Media Hosting</option>
-                        <option value="Branding">Branding</option>
-                        <option value="Individuell">Individuelle Anfrage</option>
-                    </select>
-
-                    <textarea name="message" rows="4" placeholder="Nachricht..."></textarea>
-                    <button type="submit" class="btn-gold" style="width: 100%;">Senden</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                
-                <div class="footer-col">
-                    <img src="Gemini_Generated_Image_vvd3n7vvd3n7vvd3.png" alt="Lara - Geschäftsführerin" class="footer-ceo-img">
-                    <div style="text-align: left;">
-                        <span style="color: #fff; font-weight: 600; display: block; font-size: 1.3rem;">Lara</span>
-                        <span style="color: var(--gold-accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Geschäftsführerin</span>
-                    </div>
+        <!-- About Us Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+                <div class="animate-on-scroll">
+                     <img src="mission.jpg" alt="Eine professionelle, saubere Grafik" class="rounded-2xl shadow-xl w-full">
                 </div>
-
-                <div class="footer-col">
-                    <svg class="logo-svg" style="height: 25px; margin-bottom: 1rem;" viewBox="0 0 320 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                         <text x="0" y="30" font-family="'Playfair Display', serif" font-weight="600" font-size="30" letter-spacing="1" style="filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));">
-                            <tspan fill="#D4AF37">ai</tspan><tspan fill="white">designstudios</tspan>
-                        </text>
-                    </svg>
-                    <p style="color: #888; text-align: left; max-width: 250px;">
-                        Ihr Partner für digitale Gastronomie. <br>
-                        Design, Social Media & Strategie aus Luzern.
+                <div class="animate-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500 pb-2">Unsere Mission.</h2>
+                    <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+                        aidesignstudios nutzt künstliche Intelligenz, um den kreativen Prozess zu beschleunigen, ohne Kompromisse bei der Qualität einzugehen. Wir liefern Ihnen eine kuratierte Auswahl an erstklassigen Designs, die Ihre Marke perfekt repräsentieren – zu einem Bruchteil der üblichen Zeit und Kosten.
                     </p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section class="py-20 md:py-32 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto animate-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500 pb-2">Unser Versprechen.</h2>
+                    <p class="mt-4 text-lg text-gray-600">Entdecken Sie einen Designprozess, der für Ihren Erfolg konzipiert ist.</p>
+                </div>
+                <div class="mt-20 grid md:grid-cols-3 gap-10">
+                    <!-- Advantage Item -->
+                    <div class="text-center animate-on-scroll">
+                        <div class="flex items-center justify-center h-16 w-16 bg-orange-100 text-orange-600 rounded-2xl mx-auto">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6">Umfassende Pakete</h3>
+                        <p class="mt-2 text-gray-600">Erhalten Sie eine ganze Bandbreite an Designs, nicht nur einen einzelnen Entwurf.</p>
+                    </div>
+                     <!-- Advantage Item -->
+                    <div class="text-center animate-on-scroll" style="transition-delay: 0.1s;">
+                         <div class="flex items-center justify-center h-16 w-16 bg-orange-100 text-orange-600 rounded-2xl mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6">Express-Lieferung</h3>
+                        <p class="mt-2 text-gray-600">Ihre fertigen Designs in Stunden, nicht erst in Wochen.</p>
+                    </div>
+                     <!-- Advantage Item -->
+                    <div class="text-center animate-on-scroll" style="transition-delay: 0.2s;">
+                         <div class="flex items-center justify-center h-16 w-16 bg-orange-100 text-orange-600 rounded-2xl mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6">Risikofreie Bezahlung</h3>
+                        <p class="mt-2 text-gray-600">Sie zahlen erst, wenn Sie mit den Ergebnissen zu 100% zufrieden sind.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Process and Testimonials Section -->
+        <section id="process" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                 <!-- How it works -->
+                <div class="text-center max-w-3xl mx-auto animate-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500 pb-2">So funktioniert's.</h2>
+                    <p class="mt-4 text-lg text-gray-600">In drei einfachen Schritten zu Ihrem perfekten Design.</p>
+                </div>
+                <div class="mt-20 grid md:grid-cols-3 gap-10 text-center">
+                    <!-- Step 1 -->
+                    <div class="animate-on-scroll">
+                        <div class="flex items-center justify-center h-20 w-20 bg-gray-100 text-orange-600 rounded-full mx-auto text-2xl font-bold">1</div>
+                        <h3 class="text-xl font-bold mt-6">Anfrage starten</h3>
+                        <p class="mt-2 text-gray-600">Beschreiben Sie Ihr Projekt und wählen Sie die gewünschten Leistungen aus.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="animate-on-scroll" style="transition-delay: 0.1s;">
+                        <div class="flex items-center justify-center h-20 w-20 bg-gray-100 text-orange-600 rounded-full mx-auto text-2xl font-bold">2</div>
+                        <h3 class="text-xl font-bold mt-6">Entwürfe erhalten</h3>
+                        <p class="mt-2 text-gray-600">Innerhalb von 48 Stunden erhalten Sie eine Vielzahl an Design-Vorschlägen.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+                        <div class="flex items-center justify-center h-20 w-20 bg-gray-100 text-orange-600 rounded-full mx-auto text-2xl font-bold">3</div>
+                        <h3 class="text-xl font-bold mt-6">Design auswählen</h3>
+                        <p class="mt-2 text-gray-600">Wählen Sie Ihren Favoriten, wir finalisieren ihn und Sie erhalten alle Daten.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- New Packages Section: Toggle -->
+        <section id="packages" class="py-20 md:py-32 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto animate-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500 pb-2">Unsere Angebote.</h2>
+                    <p class="mt-4 text-lg text-gray-600">Wählen Sie ein Paket mit Preisvorteil oder stellen Sie sich Ihre Leistungen individuell zusammen.</p>
+                </div>
                 
-                <div class="footer-col footer-links">
-                    <h4 style="margin-bottom: 1rem;">Informationen</h4>
-                    <a onclick="openModal('modal-impressum')">Impressum</a>
-                    <a onclick="openModal('modal-datenschutz')">Datenschutz</a>
-                    <a onclick="openModal('modal-agb')">AGB</a>
+                <!-- Plan Toggle Switch -->
+                <div class="mt-16 max-w-md mx-auto bg-gray-100 rounded-xl p-2 flex items-center plan-toggle animate-on-scroll">
+                    <button id="toggle-individual" class="w-1/2 py-3 font-semibold text-gray-700 rounded-lg transition active">Design-Bausteine</button>
+                    <button id="toggle-packages" class="w-1/2 py-3 font-semibold text-gray-700 rounded-lg transition">Kombi-Pakete</button>
+                </div>
+
+                <!-- Packages View -->
+                <div id="packages-view" class="plan-view">
+                    <div class="mt-12 space-y-8 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-8">
+                        <!-- Pricing Plan: Starter -->
+                        <div class="border border-gray-200 rounded-2xl shadow-lg p-8 flex flex-col">
+                            <h3 class="text-2xl font-bold">Starter</h3>
+                            <p class="mt-2 text-gray-500">Ideal für den Start einer neuen Marke.</p>
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">80.-</span>
+                                <p class="text-sm text-gray-500">statt 90.- einzeln</p>
+                            </div>
+                            <ul class="mt-8 space-y-4 flex-grow">
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Logo Design Paket</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Visitenkarten Paket</li>
+                            </ul>
+                            <button class="add-to-cart-button mt-8 w-full py-3 rounded-lg font-semibold min-w-[120px] flex justify-center" onclick="selectPackage('Starter Paket')">Paket wählen</button>
+                        </div>
+                        <!-- Pricing Plan: Wachstum (Highlighted) -->
+                        <div class="border-2 border-orange-500 rounded-2xl shadow-2xl p-8 flex flex-col relative pricing-table-highlight">
+                            <div class="popular-badge absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 px-4 py-1 text-white text-sm font-semibold tracking-wide rounded-full">Beliebtestes Paket</div>
+                            <h3 class="text-2xl font-bold">Wachstum</h3>
+                            <p class="mt-2 text-gray-500">Um Ihre Marke sichtbar zu machen.</p>
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">200.-</span>
+                                 <p class="text-sm text-gray-500">statt 260.- einzeln</p>
+                            </div>
+                            <ul class="mt-8 space-y-4 flex-grow">
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Alles aus dem Starter Paket</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Social Media Kit</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Flyer & Plakate</li>
+                            </ul>
+                            <button class="add-to-cart-button mt-8 w-full py-3 rounded-lg font-semibold min-w-[120px] flex justify-center" onclick="selectPackage('Wachstum Paket')">Paket wählen</button>
+                        </div>
+                        <!-- Pricing Plan: Komplett -->
+                        <div class="border border-gray-200 rounded-2xl shadow-lg p-8 flex flex-col">
+                            <h3 class="text-2xl font-bold">Komplett</h3>
+                            <p class="mt-2 text-gray-500">Die All-in-One Design Lösung.</p>
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">550.-</span>
+                                <p class="mt-2 text-sm text-gray-500">statt 640.- einzeln</p>
+                            </div>
+                            <ul class="mt-8 space-y-4 flex-grow">
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Alles aus dem Wachstum Paket</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Komplettes Branding</li>
+                                <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Landing Page Design</li>
+                            </ul>
+                            <button class="add-to-cart-button mt-8 w-full py-3 rounded-lg font-semibold min-w-[120px] flex justify-center" onclick="selectPackage('Komplett Paket')">Paket wählen</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Individual Services View -->
+                <div id="individual-view" class="plan-view active">
+                    <div class="mt-12 grid md:grid-cols-2 gap-4">
+                        <!-- Individual Item -->
+                        <div class="individual-item border border-gray-200 rounded-xl p-4 flex items-center justify-between transition">
+                            <div>
+                                <h4 class="font-bold text-lg">Logo Design</h4>
+                                <p class="text-sm text-gray-500">10+ einzigartige Entwürfe</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">50.-</span>
+                                <button class="add-to-cart-button px-4 py-2 rounded-lg font-semibold text-sm min-w-[120px] flex justify-center" onclick="selectPackage('Logo Design')">Hinzufügen</button>
+                            </div>
+                        </div>
+                         <!-- Individual Item -->
+                        <div class="individual-item border border-gray-200 rounded-xl p-4 flex items-center justify-between transition">
+                            <div>
+                                <h4 class="font-bold text-lg">Visitenkarten</h4>
+                                <p class="text-sm text-gray-500">3 druckfertige Vorschläge</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">40.-</span>
+                                <button class="add-to-cart-button px-4 py-2 rounded-lg font-semibold text-sm min-w-[120px] flex justify-center" onclick="selectPackage('Visitenkarten')">Hinzufügen</button>
+                            </div>
+                        </div>
+                         <!-- Individual Item -->
+                        <div class="individual-item border border-gray-200 rounded-xl p-4 flex items-center justify-between transition">
+                            <div>
+                                <h4 class="font-bold text-lg">Flyer & Plakate</h4>
+                                <p class="text-sm text-gray-500">2 druckfertige Vorschläge</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">80.-</span>
+                                <button class="add-to-cart-button px-4 py-2 rounded-lg font-semibold text-sm min-w-[120px] flex justify-center" onclick="selectPackage('Flyer & Plakate')">Hinzufügen</button>
+                            </div>
+                        </div>
+                         <!-- Individual Item -->
+                        <div class="individual-item border border-gray-200 rounded-xl p-4 flex items-center justify-between transition">
+                            <div>
+                                <h4 class="font-bold text-lg">Social Media Kit</h4>
+                                <p class="text-sm text-gray-500">Profilbilder & 5 Vorlagen</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">90.-</span>
+                                <button class="add-to-cart-button px-4 py-2 rounded-lg font-semibold text-sm min-w-[120px] flex justify-center" onclick="selectPackage('Social Media Kit')">Hinzufügen</button>
+                            </div>
+                        </div>
+                         <!-- Individual Item -->
+                        <div class="individual-item border border-gray-200 rounded-xl p-4 flex items-center justify-between transition">
+                            <div>
+                                <h4 class="font-bold text-lg">Komplettes Branding</h4>
+                                <p class="text-sm text-gray-500">Logo, Farben, Schriften & Guide</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">200.-</span>
+                                <button class="add-to-cart-button px-4 py-2 rounded-lg font-semibold text-sm min-w-[120px] flex justify-center" onclick="selectPackage('Komplettes Branding')">Hinzufügen</button>
+                            </div>
+                        </div>
+                         <!-- Individual Item -->
+                        <div class="individual-item border border-gray-200 rounded-xl p-4 flex items-center justify-between transition">
+                            <div>
+                                <h4 class="font-bold text-lg">Landing Page Design</h4>
+                                <p class="text-sm text-gray-500">Visuelles Konzept (Desktop & Mobil)</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500">180.-</span>
+                                <button class="add-to-cart-button px-4 py-2 rounded-lg font-semibold text-sm min-w-[120px] flex justify-center" onclick="selectPackage('Landing Page Design')">Hinzufügen</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
+        </section>
 
-            <div class="footer-bottom">
-                &copy; 2026 AI DESIGN STUDIOS. All Rights Reserved.
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="bg-white max-w-4xl mx-auto p-8 md:p-12 rounded-2xl shadow-xl border border-gray-200/80 animate-on-scroll">
+                    
+                    <h2 class="text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500 pb-2">Bereit für den nächsten Schritt?</h2>
+                    <form class="mt-8 space-y-6" action="https://formsubmit.co/laestheticcreations@gmail.com" method="POST" enctype="multipart/form-data">
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="first-name" class="block text-sm font-medium text-gray-700 mb-2">Vorname *</label>
+                                <input type="text" id="first-name" name="Vorname" required class="w-full bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                            </div>
+                            <div>
+                                <label for="last-name" class="block text-sm font-medium text-gray-700 mb-2">Nachname *</label>
+                                <input type="text" id="last-name" name="Nachname" required class="w-full bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" id="email" name="Email" required class="w-full bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                        </div>
+                        
+                        <!-- NEUES SELECT FELD FÜR DIE PAKETWAHL -->
+                        <div>
+                            <label for="selected-package" class="block text-sm font-medium text-gray-700 mb-2">Interessiert an</label>
+                            <select id="selected-package" name="Paket" class="w-full bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                                <option value="" disabled selected>Bitte wählen...</option>
+                                <optgroup label="Pakete">
+                                    <option value="Starter Paket">Starter Paket (80.-)</option>
+                                    <option value="Wachstum Paket">Wachstum Paket (200.-)</option>
+                                    <option value="Komplett Paket">Komplett Paket (550.-)</option>
+                                </optgroup>
+                                <optgroup label="Einzelleistungen">
+                                    <option value="Logo Design">Logo Design (50.-)</option>
+                                    <option value="Visitenkarten">Visitenkarten (40.-)</option>
+                                    <option value="Flyer & Plakate">Flyer & Plakate (80.-)</option>
+                                    <option value="Social Media Kit">Social Media Kit (90.-)</option>
+                                    <option value="Komplettes Branding">Komplettes Branding (200.-)</option>
+                                    <option value="Landing Page Design">Landing Page Design (180.-)</option>
+                                </optgroup>
+                                <option value="Individuelle Anfrage">Individuelle Anfrage</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="details" class="block text-sm font-medium text-gray-700 mb-2">Zusatzinformationen</label>
+                            <textarea id="details" name="Zusatzinformationen" rows="4" placeholder="Beschreiben Sie hier kurz Ihre Vision, Wünsche oder Ideen..." class="w-full bg-gray-50 border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"></textarea>
+                        </div>
+                        
+                        <!-- New Gemini Feature Button -->
+                        <div class="text-center py-2">
+                            <button type="button" id="gemini-suggest-btn" class="cta-button inline-flex items-center justify-center font-semibold py-2 px-6 rounded-full">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M12 3c.3 0 .5.2.5.5v3c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-3c0-.3.2-.5.5-.5zM6.4 6.4c.2-.2.5-.2.7 0l2.1 2.1c.2.2.2.5 0 .7s-.5.2-.7 0L6.4 7.1c-.2-.2-.2-.5 0-.7zM3 12c0-.3.2-.5.5-.5h3c.3 0 .5.2.5.5s-.2.5-.5.5h-3c-.3 0-.5-.2-.5-.5zM6.4 17.6c-.2.2-.5.2-.7 0s-.2-.5 0-.7l2.1-2.1c.2-.2.5-.2.7 0s.2.5 0 .7l-2.1 2.1zM12 21c-.3 0-.5-.2-.5-.5v-3c0 .3.2.5.5.5s.5-.2.5-.5v3c0 .3-.2.5-.5-.5zM17.6 17.6c.2.2.2.5 0 .7s-.5.2-.7 0l-2.1-2.1c.2-.2.2-.5 0-.7s.5-.2.7 0l2.1 2.1zM21 12c0 .3-.2.5-.5.5h-3c-.3 0-.5-.2-.5-.5s.2-.5.5-.5h3c.3 0 .5.2.5.5zM17.6 6.4c.2-.2.5-.2.7 0s.2.5 0 .7l-2.1 2.1c-.2.2-.5.2-.7 0s-.2-.5 0-.7l2.1-2.1z"></path></svg>
+                                <span id="gemini-btn-text" class="text-gradient">✨ Intelligente Angebots-Analyse</span>
+                            </button>
+                            <p id="gemini-status" class="text-sm text-gray-500 mt-2 h-5"></p>
+                            <div id="gemini-suggestions-container" class="mt-4 space-y-3 text-left"></div>
+                        </div>
+                        
+                        <div>
+                             <label for="file-upload" class="block text-sm font-medium text-gray-700 mb-2">File Upload</label>
+                             <label for="file-upload" class="mt-2 flex justify-center w-full rounded-lg border border-dashed border-gray-400 px-6 py-10 hover:border-orange-500 transition cursor-pointer">
+                                <div class="text-center">
+                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                                    <p class="mt-2 text-sm text-gray-600" id="file-upload-text">Datei hierher ziehen oder <span class="font-semibold text-orange-600">klicken zum Hochladen</span></p>
+                                    <input id="file-upload" name="Anhang" type="file" class="sr-only">
+                                </div>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="cta-button w-full font-bold py-3 px-6 rounded-lg text-lg"><span class="text-gradient">Anfrage senden</span></button>
+                    </form>
+                </div>
             </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-white">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 aidesignstudios. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
-    <div id="modal-impressum" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-impressum')">&times;</span>
-            <div class="modal-body">
-                <h2>Impressum</h2>
-                <p><strong>Angaben gemäß § 5 TMG / Impressumspflicht Schweiz</strong></p>
-                <p>AI Design Studios<br>
-                [Musterstraße 1]<br>
-                [PLZ] Luzern, Schweiz</p>
-
-                <h3>Vertreten durch:</h3>
-                <p>Lara</p>
-
-                <h3>Kontakt:</h3>
-                <p>E-Mail: laestheticcreations@gmail.com<br>
-                Webseite: www.aidesignstudios.ch</p>
-
-                <h3>Haftungsausschluss</h3>
-                <p>Der Autor übernimmt keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Haftungsansprüche gegen den Autor wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstanden sind, werden ausgeschlossen.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-datenschutz" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-datenschutz')">&times;</span>
-            <div class="modal-body">
-                <h2>Datenschutzerklärung</h2>
-                <p>Verantwortliche Stelle: AI Design Studios, Lara [Nachname], Luzern.</p>
-                
-                <h3>1. Grundlegendes</h3>
-                <p>Gestützt auf Artikel 13 der schweizerischen Bundesverfassung und die datenschutzrechtlichen Bestimmungen des Bundes (Datenschutzgesetz, DSG) hat jede Person Anspruch auf Schutz ihrer Privatsphäre sowie auf Schutz vor Missbrauch ihrer persönlichen Daten. Wir halten diese Bestimmungen ein.</p>
-
-                <h3>2. Datenerfassung auf unserer Website</h3>
-                <p><strong>Kontaktformular:</strong> Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
-                <p><strong>Server-Log-Dateien:</strong> Der Provider dieser Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien (Browser, IP-Adresse, Uhrzeit), die Ihr Browser automatisch an uns übermittelt.</p>
-
-                <h3>3. Sicherheit</h3>
-                <p>Diese Seite nutzt aus Gründen der Sicherheit und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-Verschlüsselung.</p>
-                
-                <h3>4. Ihre Rechte</h3>
-                <p>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-agb" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-agb')">&times;</span>
-            <div class="modal-body">
-                <h2>Allgemeine Geschäftsbedingungen (AGB)</h2>
-                
-                <h3>1. Geltungsbereich</h3>
-                <p>Für die Geschäftsbeziehung zwischen AI Design Studios (Luzern) und dem Kunden gelten ausschließlich die nachfolgenden Allgemeinen Geschäftsbedingungen in ihrer zum Zeitpunkt der Bestellung gültigen Fassung.</p>
-
-                <h3>2. Vertragsgegenstand</h3>
-                <p>Gegenstand des Vertrages ist die Erbringung von Dienstleistungen im Bereich Webdesign, Grafikdesign und Social Media Marketing gemäss den auf der Website beschriebenen Paketen.</p>
-
-                <h3>3. Mitwirkungspflichten</h3>
-                <p>Der Kunde verpflichtet sich, alle für die Erstellung des Designs notwendigen Unterlagen zeitnah zur Verfügung zu stellen.</p>
-
-                <h3>4. Zahlungsbedingungen</h3>
-                <p>Rechnungen sind innerhalb von 10 Tagen nach Erhalt ohne Abzug zahlbar. Bei Abo-Modellen erfolgt die Abrechnung monatlich im Voraus.</p>
-
-                <h3>5. Urheberrecht</h3>
-                <p>Die erstellten Designs bleiben bis zur vollständigen Bezahlung Eigentum von AI Design Studios. Nach Zahlung erhält der Kunde die Nutzungsrechte.</p>
-
-                <h3>6. Gerichtsstand</h3>
-                <p>Der Gerichtsstand ist Luzern, Schweiz.</p>
-            </div>
-        </div>
-    </div>
-
     <script>
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-        }
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
-            }
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Select & Scroll Logic (Neue Funktion für Direkt-Auswahl) ---
+            window.selectPackage = function(paketName) {
+                // 1. Dropdown auswählen und Wert setzen
+                const selectElement = document.getElementById('selected-package');
+                if (selectElement) {
+                    selectElement.value = paketName;
+                }
 
-        // --- FUNKTION FÜR KARTEN-KLICK ---
-        function selectPackage(paketName) {
-            // 1. Dropdown auswählen
-            const selectElement = document.querySelector('select[name="paket"]');
-            if (selectElement) {
-                // Den Wert setzen
-                selectElement.value = paketName;
-            }
+                // 2. Sanft zum Formular scrollen
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
 
-            // 2. Sanft zum Kontaktformular scrollen
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
+            // --- Gemini AI Suggestion Logic ---
+            const availableServices = [
+                { id: "Logo Design", name: "Logo Design" },
+                { id: "Visitenkarten", name: "Visitenkarten" },
+                { id: "Flyer & Plakate", name: "Flyer & Plakate" },
+                { id: "Social Media Kit", name: "Social Media Kit" },
+                { id: "Komplettes Branding", name: "Komplettes Branding" },
+                { id: "Landing Page Design", name: "Landing Page Design" },
+                { id: "Starter Paket", name: "Starter Paket" },
+                { id: "Wachstum Paket", name: "Wachstum Paket" },
+                { id: "Komplett Paket", name: "Komplett Paket" }
+            ];
+
+            const geminiSuggestBtn = document.getElementById('gemini-suggest-btn');
+            const geminiBtnText = document.getElementById('gemini-btn-text').parentElement;
+            const geminiStatus = document.getElementById('gemini-status');
+            const projectDetailsTextarea = document.getElementById('details');
+            const suggestionsContainer = document.getElementById('gemini-suggestions-container');
+
+            async function getGeminiSuggestions() {
+                const userQuery = projectDetailsTextarea.value;
+                if (userQuery.trim().length < 10) {
+                    geminiStatus.textContent = "Bitte beschreiben Sie Ihr Projekt etwas ausführlicher.";
+                    return;
+                }
+
+                geminiSuggestBtn.disabled = true;
+                geminiStatus.textContent = "Analysiere Ihr Projekt...";
+                geminiBtnText.querySelector('span').textContent = "Analysiere...";
+                suggestionsContainer.innerHTML = '';
+
+                const servicesDescription = availableServices.map(s => `- id: ${s.id}, name: ${s.name}`).join('\n');
+                const systemPrompt = `You are an expert design consultant. Recommend the most suitable service IDs based on user description: ${servicesDescription}. Return ONLY a comma-separated list of IDs.`;
+                
+                const apiKey = ""; // API key managed by environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: userQuery }] }],
+                            systemInstruction: { parts: [{ text: systemPrompt }] }
+                        })
+                    });
+
+                    if (!response.ok) throw new Error(`API error`);
+                    const result = await response.json();
+                    const suggestedIdsText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    
+                    if (suggestedIdsText) {
+                        const suggestedIds = suggestedIdsText.split(',').map(id => id.trim());
+                        if(suggestedIds.length > 0){
+                            geminiStatus.textContent = "Vorschläge basierend auf Ihrer Beschreibung:";
+                            suggestedIds.forEach(id => {
+                                const service = availableServices.find(s => s.id === id);
+                                if (service) {
+                                    const el = document.createElement('div');
+                                    el.className = 'flex justify-between items-center p-3 bg-orange-50 rounded-lg border border-orange-200 cursor-pointer hover:bg-orange-100 transition';
+                                    el.innerHTML = `<span class="font-medium">${service.name}</span><span class="text-sm text-orange-600 font-semibold">Auswählen</span>`;
+                                    el.onclick = () => selectPackage(service.id);
+                                    suggestionsContainer.appendChild(el);
+                                }
+                            });
+                        }
+                    }
+                } catch (error) {
+                    geminiStatus.textContent = "Konnte keine Vorschläge laden.";
+                } finally {
+                    geminiSuggestBtn.disabled = false;
+                    geminiBtnText.querySelector('span').textContent = "✨ Intelligente Angebots-Analyse";
+                }
             }
-        }
+            geminiSuggestBtn.addEventListener('click', getGeminiSuggestions);
+
+            // --- File Upload UI ---
+            const fileUploadInput = document.getElementById('file-upload');
+            const fileUploadText = document.getElementById('file-upload-text');
+            fileUploadInput.addEventListener('change', () => {
+                if (fileUploadInput.files.length > 0) {
+                    fileUploadText.textContent = `Ausgewählt: ${fileUploadInput.files[0].name}`;
+                }
+            });
+
+            // --- Mobile Navigation ---
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const toggleMenu = () => {
+                 mobileNav.classList.toggle('hidden');
+                 mobileNav.classList.toggle('flex');
+                 document.body.classList.toggle('overflow-hidden');
+            };
+            mobileNavToggle.addEventListener('click', toggleMenu);
+            mobileNavLinks.forEach(link => link.addEventListener('click', toggleMenu));
+            
+            // --- Plan Toggle Logic ---
+            const togglePackagesBtn = document.getElementById('toggle-packages');
+            const toggleIndividualBtn = document.getElementById('toggle-individual');
+            const packagesView = document.getElementById('packages-view');
+            const individualView = document.getElementById('individual-view');
+
+            togglePackagesBtn.addEventListener('click', () => {
+                togglePackagesBtn.classList.add('active');
+                toggleIndividualBtn.classList.remove('active');
+                packagesView.classList.add('active');
+                individualView.classList.remove('active');
+            });
+
+            toggleIndividualBtn.addEventListener('click', () => {
+                toggleIndividualBtn.classList.add('active');
+                togglePackagesBtn.classList.remove('active');
+                individualView.classList.add('active');
+                packagesView.classList.remove('active');
+            });
+
+            // --- Scroll Animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        });
     </script>
-
 </body>
 </html>
